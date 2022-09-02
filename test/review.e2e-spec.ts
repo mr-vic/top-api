@@ -75,6 +75,7 @@ describe('AppController (e2e)', () => {
   it('/review/byProduct/:productId (GET) - fail', async () => {
     return request(app.getHttpServer())
       .get('/review/byProduct/' + new Types.ObjectId().toHexString())
+      .set('Authorization', 'Bearer ' + token)
       .expect(200)
       .then(({ body }: request.Response) => {
         expect(body.length).toBe(0);
